@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Admin | Studio Management</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <span class="logo-main">LUMIÈRE</span>
+            <span class="logo-sub">STUDIOS</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" data-module="upload-manager">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <span>Upload Manager</span>
+            </li>
+            <li class="nav-item" data-module="ai-tool">
+                <i class="fas fa-magic"></i>
+                <span>AI Image Tool</span>
+            </li>
+            <li class="nav-item" data-module="team">
+                <i class="fas fa-users"></i>
+                <span>Team Management</span>
+            </li>
+            <li class="nav-item" data-module="settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </li>
+        </ul>
+        <div class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Log Out</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="dashboard-header">
+            <div class="header-title">
+                <h1 id="module-title">Upload Manager</h1>
+                <p id="module-subtitle" style="color: var(--text-dim); font-size: 14px;">Distribute event galleries to clients</p>
+            </div>
+            <div class="user-profile-container">
+                <div class="user-profile" id="profile-trigger">
+                    <div style="text-align: right;">
+                        <p style="font-weight: 600; font-size: 14px;">Master Admin</p>
+                        <p style="font-size: 11px; color: var(--accent-gold);">Superuser</p>
+                    </div>
+                    <div class="user-avatar">AD</div>
+                    <i class="fas fa-chevron-down" style="font-size: 10px; color: var(--text-dim); margin-left: 10px;"></i>
+                </div>
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <a href="#"><i class="fas fa-user-circle"></i> View Profile</a>
+                    <a href="#"><i class="fas fa-id-badge"></i> Edit ID</a>
+                    <a href="#"><i class="fas fa-shield-alt"></i> Security</a>
+                    <div style="border-top: 1px solid rgba(255,255,255,0.05); margin: 5px 0;"></div>
+                    <a href="#" style="color: #ff4d4d;" id="dropdown-logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Upload Manager Module -->
+        <section id="upload-manager" class="module-section active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Events</h3>
+                    <div class="value" id="total-events-count">42</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Photos Shared</h3>
+                    <div class="value">1,284</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Storage Used</h3>
+                    <div class="value">84%</div>
+                </div>
+            </div>
+
+            <div class="data-card">
+                <div class="card-header">
+                    <h2>Active Event Galleries</h2>
+                    <button class="btn-action" id="open-new-upload"><i class="fas fa-plus"></i> NEW UPLOAD</button>
+                </div>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 20px; text-align: left;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border); color: var(--text-dim); font-size: 12px; text-transform: uppercase;">
+                            <th style="padding: 15px 0;">Event Name</th>
+                            <th>Client Email</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="event-list">
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 20px 0;">Julian & Elena Wedding</td>
+                            <td>julian.v@example.com</td>
+                            <td>Wedding</td>
+                            <td><span style="color: #4ade80;">Active</span></td>
+                            <td>
+                                <button class="btn-icon btn-edit" title="Edit Gallery"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon btn-folder" title="Open Gallery Folder"><i class="fas fa-folder-open"></i></button>
+                                <button class="btn-icon btn-delete" title="Delete Gallery"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 20px 0;">Sofia's Baptism</td>
+                            <td>marta.s@example.com</td>
+                            <td>Baptism</td>
+                            <td><span style="color: #4ade80;">Active</span></td>
+                            <td>
+                                <button class="btn-icon btn-edit" title="Edit Gallery"><i class="fas fa-edit"></i></button>
+                                <button class="btn-icon btn-folder" title="Open Gallery Folder"><i class="fas fa-folder-open"></i></button>
+                                <button class="btn-icon btn-delete" title="Delete Gallery"><i class="fas fa-trash-alt"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- AI Image Tool Module -->
+        <section id="ai-tool" class="module-section">
+            <div class="ai-workspace">
+                <div class="image-preview-area" id="drop-zone">
+                    <input type="file" id="ai-file-input" style="display: none;" accept="image/*">
+                    <div style="text-align: center; color: var(--text-dim);" id="drop-zone-prompt">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 50px; margin-bottom: 20px;"></i>
+                        <p>Drag and drop image to enhance</p>
+                        <p style="font-size: 12px; margin-top: 10px;">Supported: RAW, JPG, PNG</p>
+                    </div>
+                </div>
+                <div class="ai-controls">
+                    <h2 style="margin-bottom: 25px; font-size: 20px;">AI Enhancements</h2>
+                    
+                    <div class="control-group">
+                        <label><span>Auto Enhancement</span> <span id="val-auto">80%</span></label>
+                        <input type="range" min="0" max="100" value="80" data-filter="brightness">
+                    </div>
+
+                    <div class="control-group">
+                        <label><span>Noise Reduction</span> <span id="val-noise">45%</span></label>
+                        <input type="range" min="0" max="100" value="45" data-filter="contrast">
+                    </div>
+
+                    <div class="control-group">
+                        <label><span>Sharpening</span> <span id="val-sharp">60%</span></label>
+                        <input type="range" min="0" max="100" value="60" data-filter="saturate">
+                    </div>
+
+                    <h2 style="margin: 35px 0 25px; font-size: 20px;">Color Grading</h2>
+
+                    <div class="control-group">
+                        <label><span>Temperature</span> <span id="val-temp">0</span></label>
+                        <input type="range" min="-50" max="50" value="0" data-filter="hue-rotate">
+                    </div>
+
+                    <div class="control-group">
+                        <label><span>Saturation</span> <span id="val-sat">100%</span></label>
+                        <input type="range" min="0" max="200" value="100" data-filter="saturate">
+                    </div>
+
+                    <div class="control-group">
+                        <label><span>Contrast</span> <span id="val-con">100%</span></label>
+                        <input type="range" min="50" max="150" value="100" data-filter="contrast">
+                    </div>
+
+                    <div style="margin-top: 40px;">
+                        <button class="btn-action" id="process-ai-btn" style="width: 100%; padding: 15px;">
+                            <i class="fas fa-download"></i> DOWNLOAD IMAGE
+                        </button>
+                    </div>
+                    <p style="font-size: 11px; color: var(--text-dim); margin-top: 20px; text-align: center;">
+                        <i class="fas fa-info-circle"></i> Download includes all AI enhancements and grading
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Management Module -->
+        <section id="team" class="module-section">
+            <div class="data-card">
+                <div class="card-header">
+                    <h2>Studio Employees</h2>
+                    <button class="btn-action"><i class="fas fa-user-plus"></i> ADD STAFF</button>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                    <!-- Employee Card -->
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 25px; border-radius: 8px;">
+                        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
+                            <div style="width: 50px; height: 50px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); font-weight: 700;">JV</div>
+                            <div>
+                                <h3 style="font-size: 16px;">Julian Vance</h3>
+                                <p style="font-size: 12px; color: var(--accent-gold);">Lead Photographer</p>
+                            </div>
+                        </div>
+                        <div class="admin-form-group">
+                            <label class="admin-label">Admin ID</label>
+                            <input type="text" class="admin-input" value="julian_vance" readonly>
+                        </div>
+                        <div class="admin-form-group">
+                            <label class="admin-label">Access Level</label>
+                            <p style="font-size: 13px;">Full Access</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-small btn-edit"><i class="fas fa-user-edit"></i> EDIT</button>
+                            <button class="btn-small btn-delete"><i class="fas fa-user-minus"></i> DELETE</button>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 25px; border-radius: 8px;">
+                        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
+                            <div style="width: 50px; height: 50px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); font-weight: 700;">MA</div>
+                            <div>
+                                <h3 style="font-size: 16px;">Marco Rossi</h3>
+                                <p style="font-size: 12px; color: var(--accent-gold);">Editor / Retoucher</p>
+                            </div>
+                        </div>
+                        <div class="admin-form-group">
+                            <label class="admin-label">Admin ID</label>
+                            <input type="text" class="admin-input" value="marco_editor" readonly>
+                        </div>
+                        <div class="admin-form-group">
+                            <label class="admin-label">Access Level</label>
+                            <p style="font-size: 13px;">AI Tools & Uploads Only</p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-small btn-edit"><i class="fas fa-user-edit"></i> EDIT</button>
+                            <button class="btn-small btn-delete"><i class="fas fa-user-minus"></i> DELETE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Module -->
+        <section id="settings" class="module-section">
+            <div class="data-card" style="max-width: 600px;">
+                <h2 style="margin-bottom: 30px;">System Settings</h2>
+                <div class="admin-form-group">
+                    <label class="admin-label">Studio Name</label>
+                    <input type="text" class="admin-input" value="Lumière Studios">
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Admin Email Notification</label>
+                    <input type="email" class="admin-input" value="admin@lumierestudios.com">
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Storage Region</label>
+                    <select class="admin-input">
+                        <option>Europe (Paris)</option>
+                        <option>North America (Virginia)</option>
+                        <option>Asia (Tokyo)</option>
+                    </select>
+                </div>
+                <div style="margin-top: 40px; display: flex; gap: 15px;">
+                    <button class="btn-action">SAVE CONFIGURATION</button>
+                    <button style="background: transparent; border: 1px solid var(--border); color: #FFF; padding: 10px 20px; border-radius: 4px; cursor: pointer;">RESET</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <div class="user-avatar-large">AD</div>
+                <h2>Master Admin</h2>
+                <p>Superuser / Studio Owner</p>
+            </div>
+            <div class="modal-body">
+                <div class="profile-info-row">
+                    <span class="label">Email Address:</span>
+                    <span class="value">admin@lumierestudios.com</span>
+                </div>
+                <div class="profile-info-row">
+                    <span class="label">Admin ID:</span>
+                    <span class="value">master_admin_01</span>
+                </div>
+                <div class="profile-info-row">
+                    <span class="label">Joined:</span>
+                    <span class="value">January 15, 2024</span>
+                </div>
+                <div class="profile-info-row">
+                    <span class="label">Security Level:</span>
+                    <span class="value" style="color: var(--accent-gold);">Level 5 (Full Access)</span>
+                </div>
+                <div class="profile-info-row">
+                    <span class="label">Status:</span>
+                    <span class="value"><span class="status-badge">ACTIVE</span></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action" style="width: 100%;" id="open-edit-profile">EDIT PROFILE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="edit-profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-user-edit" style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                <h2>Edit Personal Profile</h2>
+                <p>Update your public studio identity</p>
+            </div>
+            <form id="edit-profile-form" class="modal-body">
+                <div class="admin-form-group">
+                    <label class="admin-label">Full Name</label>
+                    <input type="text" id="edit-admin-name" class="admin-input" value="Master Admin" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Professional Title</label>
+                    <input type="text" id="edit-admin-title" class="admin-input" value="Superuser / Studio Owner" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Email Address</label>
+                    <input type="email" id="edit-admin-email" class="admin-input" value="admin@lumierestudios.com" required>
+                </div>
+                <button type="submit" class="btn-action" style="width: 100%; margin-top: 10px;">SAVE CHANGES</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit ID Modal -->
+    <div id="edit-id-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-id-badge" style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                <h2>Edit Admin ID</h2>
+                <p>Update your unique identifier</p>
+            </div>
+            <form id="edit-id-form" class="modal-body">
+                <div class="admin-form-group">
+                    <label class="admin-label">Current ID</label>
+                    <input type="text" class="admin-input" value="master_admin_01" readonly style="opacity: 0.6;">
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">New Admin ID</label>
+                    <input type="text" id="new-admin-id" class="admin-input" placeholder="Enter new ID" required>
+                </div>
+                <button type="submit" class="btn-action" style="width: 100%; margin-top: 10px;">UPDATE ID</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Security Modal -->
+    <div id="security-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-shield-alt" style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                <h2>Security Settings</h2>
+                <p>Change your account password</p>
+            </div>
+            <form id="security-form" class="modal-body">
+                <div class="admin-form-group">
+                    <label class="admin-label">Current Password</label>
+                    <input type="password" class="admin-input" placeholder="••••••••" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">New Password</label>
+                    <input type="password" class="admin-input" placeholder="••••••••" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Confirm New Password</label>
+                    <input type="password" class="admin-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-action" style="width: 100%; margin-top: 10px;">CHANGE PASSWORD</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Event Modal -->
+    <div id="edit-event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-edit" style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                <h2>Edit Event Gallery</h2>
+                <p>Modify gallery details and client access</p>
+            </div>
+            <form id="edit-event-form" class="modal-body">
+                <input type="hidden" id="edit-event-index">
+                <div class="admin-form-group">
+                    <label class="admin-label">Event Name</label>
+                    <input type="text" id="edit-event-name" class="admin-input" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Client Email</label>
+                    <input type="email" id="edit-event-email" class="admin-input" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Event Type</label>
+                    <select id="edit-event-type" class="admin-input">
+                        <option value="Wedding">Wedding</option>
+                        <option value="Baptism">Baptism</option>
+                        <option value="Gala">Gala / Event</option>
+                        <option value="Portrait">Portrait</option>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Status</label>
+                    <select id="edit-event-status" class="admin-input">
+                        <option value="Active">Active</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Archived">Archived</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-action" style="width: 100%; margin-top: 10px;">SAVE CHANGES</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Gallery Folder Modal -->
+    <div id="gallery-folder-modal" class="modal">
+        <div class="modal-content" style="max-width: 900px; width: 95%;">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header" style="text-align: left; border-bottom: 1px solid var(--border); padding-bottom: 15px; margin-bottom: 20px;">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fas fa-folder-open" style="font-size: 30px; color: var(--accent-gold);"></i>
+                    <div>
+                        <h2 id="folder-event-name" style="margin: 0; font-size: 20px;">Event Gallery Folder</h2>
+                        <p id="folder-event-client" style="font-size: 13px; color: var(--text-dim);">client@example.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="folder-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                <div style="display: flex; gap: 10px;">
+                    <button class="btn-action" id="upload-to-folder"><i class="fas fa-cloud-upload-alt"></i> SHARE PHOTOS</button>
+                    <button style="background: transparent; border: 1px solid var(--border); color: #FFF; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 12px;"><i class="fas fa-share-alt"></i> GET CLIENT LINK</button>
+                </div>
+                <div style="color: var(--text-dim); font-size: 12px;">
+                    <span id="photo-count">0</span> Photos shared in this folder
+                </div>
+            </div>
+
+            <div id="gallery-grid" class="gallery-grid-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; max-height: 400px; overflow-y: auto; padding-right: 10px;">
+                <!-- Photos will be dynamically added here -->
+                <div class="empty-folder-state" style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: var(--text-dim);">
+                    <i class="fas fa-images" style="font-size: 50px; opacity: 0.2; margin-bottom: 15px;"></i>
+                    <p>No photos shared in this folder yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Upload Modal -->
+    <div id="new-upload-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-plus-circle" style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                <h2>Create New Event</h2>
+                <p>Initialize a new gallery folder for a client</p>
+            </div>
+            <form id="new-upload-form" class="modal-body">
+                <div class="admin-form-group">
+                    <label class="admin-label">Event Name</label>
+                    <input type="text" id="new-event-name" class="admin-input" placeholder="e.g. Smith Wedding 2024" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Client Email</label>
+                    <input type="email" id="new-event-email" class="admin-input" placeholder="client@example.com" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Event Type</label>
+                    <select id="new-event-type" class="admin-input">
+                        <option value="Wedding">Wedding</option>
+                        <option value="Baptism">Baptism</option>
+                        <option value="Gala">Gala / Event</option>
+                        <option value="Portrait">Portrait</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-action" style="width: 100%; margin-top: 10px;">CREATE FOLDER</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification System -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

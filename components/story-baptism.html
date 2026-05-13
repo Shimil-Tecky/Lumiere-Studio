@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Grace | Baptism Story | Lumière Studios</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .story-hero {
+            height: 80vh;
+            background: url('../images/portfolio_baptism_1.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            text-align: center;
+        }
+        
+        .story-hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--bg-dark));
+        }
+        
+        .story-header {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .story-content {
+            padding: 100px 0;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .story-text {
+            font-size: 18px;
+            color: var(--text-dim);
+            line-height: 2;
+            margin-bottom: 60px;
+            font-style: italic;
+        }
+        
+        .story-details {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 80px;
+            color: var(--primary-gold);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .story-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 80px;
+        }
+        
+        .story-gallery img {
+            width: 100%;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        
+        .story-gallery img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        
+        .back-to-portfolio {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav" class="scrolled">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; text-align: center;">
+                    <span class="logo-main">LUMIÈRE</span>
+                    <span class="logo-sub">STUDIOS</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="login.html">CLIENT LOGIN</a></li>
+                <li><a href="live-event.html">LIVE EVENT</a></li>
+                <li><a href="../index.html#admin" class="btn-admin">ADMIN</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="story-hero">
+        <div class="story-header">
+            <span class="subtitle" style="color: var(--primary-gold); letter-spacing: 5px;">A Baptism Story</span>
+            <h1 class="hero-title" style="color: #FFF; font-size: 70px;">Pure Grace</h1>
+            <div class="title-underline"></div>
+        </div>
+    </header>
+
+    <article class="story-content container">
+        <div class="story-details">
+            <span><i class="far fa-calendar-alt"></i> August 24, 2026</span>
+            <span><i class="fas fa-map-marker-alt"></i> Notre-Dame de Paris</span>
+        </div>
+        
+        <p class="story-text">
+            "In the quiet reverence of the cathedral, a new chapter began with a gentle splash of water and a whisper of prayer. 'Pure Grace' documents the baptism of little Sofia, a day filled with light, family, and timeless traditions. 
+            <br><br>
+            Capturing the soft light filtering through stained glass and the tender embrace of godparents, we aimed to preserve the purity of this sacred milestone. Every photograph is a testament to the love and faith that surrounded Sofia on her special day."
+        </p>
+
+        <div class="story-gallery">
+            <img src="../images/portfolio_baptism_1.png" alt="Baptism Moment 1">
+            <img src="../images/portfolio_baptism_1.png" alt="Baptism Moment 2">
+        </div>
+
+        <div class="back-to-portfolio">
+            <a href="portfolio.html" class="btn btn-outline">BACK TO PORTFOLIO</a>
+        </div>
+    </article>
+
+    <a href="https://wa.me/yournumber" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="../app.js"></script>
+</body>
+</html>

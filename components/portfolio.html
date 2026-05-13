@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Lumière Studios | Luxury Cinematic Photography</title>
+    <meta name="description" content="Explore the luxury cinematic photography portfolio of Lumière Studios. Featuring weddings, baptisms, and premium events.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="booking.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .portfolio-page-header {
+            padding: 180px 0 100px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), var(--bg-dark));
+            text-align: center;
+        }
+        
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: var(--text-dim);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-transform: uppercase;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            border-color: var(--primary-gold);
+            color: var(--primary-gold);
+            background: rgba(197, 160, 89, 0.05);
+        }
+        
+        #portfolio-main {
+            padding-bottom: 120px;
+        }
+    </style>
+</head>
+<body>
+    <nav id="main-nav" class="scrolled"> <!-- Force scrolled state for visibility -->
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; text-align: center;">
+                    <span class="logo-main">LUMIÈRE</span>
+                    <span class="logo-sub">STUDIOS</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="portfolio.html" class="active">PORTFOLIO</a></li>
+                <li><a href="login.html">CLIENT LOGIN</a></li>
+                <li><a href="live-event.html">LIVE EVENT</a></li>
+                <li><a href="../index.html#admin" class="btn-admin">ADMIN</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="portfolio-page-header">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Our Masterpieces</span>
+                <h1 class="section-title">The Portfolio</h1>
+                <div class="title-underline"></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="portfolio-main">
+        <div class="container">
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All Work</button>
+                <button class="filter-btn" data-filter="wedding">Weddings</button>
+                <button class="filter-btn" data-filter="baptism">Baptisms</button>
+                <button class="filter-btn" data-filter="event">Premium Events</button>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Row 1 -->
+                <div class="portfolio-item wedding">
+                    <img src="../images/portfolio_wedding_1.png" alt="Wedding Photography">
+                    <div class="portfolio-overlay">
+                        <span class="category">Wedding</span>
+                        <h3>Eternal Bond</h3>
+                        <a href="story-wedding.html" class="view-project">View Story</a>
+                    </div>
+                </div>
+                <div class="portfolio-item baptism">
+                    <img src="../images/portfolio_baptism_1.png" alt="Baptism Photography">
+                    <div class="portfolio-overlay">
+                        <span class="category">Baptism</span>
+                        <h3>Pure Grace</h3>
+                        <a href="story-baptism.html" class="view-project">View Story</a>
+                    </div>
+                </div>
+                
+                <!-- Row 2 -->
+                <div class="portfolio-item event">
+                    <img src="../images/portfolio_event_1.png" alt="Event Photography">
+                    <div class="portfolio-overlay">
+                        <span class="category">Premium Event</span>
+                        <h3>Gala Night</h3>
+                        <a href="story-event.html" class="view-project">View Story</a>
+                    </div>
+                </div>
+                <div class="portfolio-item wedding">
+                    <img src="../images/hero_wedding_photography.png" alt="Wedding Detail">
+                    <div class="portfolio-overlay">
+                        <span class="category">Wedding</span>
+                        <h3>The Celebration</h3>
+                        <a href="story-wedding.html" class="view-project">View Story</a>
+                    </div>
+                </div>
+                
+                <!-- Added placeholders for a richer page -->
+                <div class="portfolio-item baptism">
+                    <img src="images/portfolio_baptism_1.png" alt="Baptism Ceremony">
+                    <div class="portfolio-overlay">
+                        <span class="category">Baptism</span>
+                        <h3>Sacred Moments</h3>
+                        <a href="story-baptism.html" class="view-project">View Story</a>
+                    </div>
+                </div>
+                <div class="portfolio-item event">
+                    <img src="images/portfolio_event_1.png" alt="Event Detail">
+                    <div class="portfolio-overlay">
+                        <span class="category">Premium Event</span>
+                        <h3>Urban Elegance</h3>
+                        <a href="story-event.html" class="view-project">View Story</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="https://wa.me/yournumber" class="whatsapp-float" target="_blank" id="whatsapp-button">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="../app.js"></script>
+    <script>
+        // Simple filter logic
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

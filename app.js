@@ -121,8 +121,57 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Toast Notification System
+    function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+        
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        
+        let icon = 'fa-check-circle';
+        if (type === 'error') icon = 'fa-exclamation-circle';
+        if (type === 'info') icon = 'fa-info-circle';
+
+        toast.innerHTML = `
+            <i class="fas ${icon}"></i>
+            <div class="toast-content">${message}</div>
+        `;
+
+        container.appendChild(toast);
+
+        setTimeout(() => toast.classList.add('active'), 10);
+
+        setTimeout(() => {
+            toast.classList.remove('active');
+            setTimeout(() => toast.remove(), 400);
+        }, 4000);
+    }
+
     // Load components on start
     loadComponent('booking-container', 'components/booking.html');
+
+    // Admin Login Handler
+    const adminForm = document.getElementById('admin-login-form');
+    if (adminForm) {
+        adminForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const adminId = document.getElementById('admin-user').value;
+            const adminPass = document.getElementById('admin-pass').value;
+            
+            // Mock employee credentials
+            const employees = ['julian_vance', 'marco_editor', 'admin'];
+            
+            if (employees.includes(adminId.toLowerCase())) {
+                showToast(`Welcome back, ${adminId}. Redirecting to Admin Panel...`, 'success');
+                setTimeout(() => {
+                    window.location.href = 'admin/admin.html';
+                }, 1500);
+            } else {
+                showToast('Access Denied: Invalid Admin ID or Password.', 'error');
+            }
+        });
+    }
 
     console.log('Lumière Studios Landing Page Initialized');
 });

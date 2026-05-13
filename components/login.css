@@ -1,0 +1,171 @@
+/* Login Page Specific Styles */
+.login-container {
+    min-height: calc(100vh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 20px 60px;
+    background: radial-gradient(circle at center, rgba(197, 160, 89, 0.05) 0%, var(--bg-dark) 100%);
+}
+
+.login-card {
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(197, 160, 89, 0.1);
+    padding: 50px;
+    width: 100%;
+    max-width: 450px;
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    animation: premiumFadeIn 1s forwards;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.login-header h2 {
+    font-size: 28px;
+    color: var(--primary-gold);
+    margin-bottom: 10px;
+}
+
+.login-header p {
+    color: var(--text-dim);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text-light);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.form-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    color: var(--text-light);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: var(--transition);
+    border-radius: 2px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 13px;
+}
+
+.forgot-password {
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.forgot-password:hover {
+    color: var(--primary-gold);
+}
+
+.btn-login {
+    width: 100%;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0;
+    color: var(--text-dim);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.divider:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.divider:not(:empty)::after {
+    margin-left: .25em;
+}
+
+.google-login-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #FFF;
+    color: #000;
+    border: none;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    transition: var(--transition);
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.google-login-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.google-login-btn i {
+    font-size: 18px;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    color: var(--text-dim);
+}
+
+.signup-link a {
+    color: var(--primary-gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 30px 20px;
+    }
+}

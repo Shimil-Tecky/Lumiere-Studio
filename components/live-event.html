@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Event Stream | Lumière Studios</title>
+    <meta name="description" content="Access live event photos in real-time. Scan the QR code to view and download your moments.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="live-event.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav id="main-nav" class="scrolled">
+        <div class="container">
+            <div class="logo">
+                <a href="../index.html" style="text-decoration: none; text-align: center;">
+                    <span class="logo-main">LUMIÈRE</span>
+                    <span class="logo-sub">STUDIOS</span>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">HOME</a></li>
+                <li><a href="portfolio.html">PORTFOLIO</a></li>
+                <li><a href="login.html">CLIENT LOGIN</a></li>
+                <li><a href="live-event.html" class="active">LIVE EVENT</a></li>
+                <li><a href="../index.html#admin" class="btn-admin">ADMIN</a></li>
+            </ul>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="live-event-hero">
+        <div class="container">
+            <div class="live-status">
+                <span class="live-dot"></span>
+                Live Event Streaming
+            </div>
+            <h1 class="hero-title" style="color: #FFF; font-size: clamp(30px, 8vw, 70px);">Grand Gala 2026</h1>
+            <p class="hero-subtitle">Capturing excellence in real-time</p>
+        </div>
+    </header>
+
+    <section class="qr-section">
+        <div class="container">
+            <div class="qr-grid">
+                <div class="qr-card">
+                    <div class="qr-image">
+                        <!-- Mockup QR Code -->
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://lumierestudios.com/live-event-gala-2026" alt="Event QR Code" style="width: 100%; border-radius: 4px;">
+                    </div>
+                    <div class="qr-instructions">
+                        <h3>Scan to Access</h3>
+                        <p>Open your camera to instantly view and download your professional photos.</p>
+                    </div>
+                </div>
+                <div class="event-details">
+                    <span class="subtitle" style="color: var(--primary-gold); letter-spacing: 4px; font-size: 12px; font-weight: 600; display: block; margin-bottom: 10px;">EVENT INFO</span>
+                    <h2>The Grand Celebration</h2>
+                    <div class="detail-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>May 13, 2026</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Palais Garnier, Paris</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-camera"></i>
+                        <span>Lead Photographer: Julian Vance</span>
+                    </div>
+                    <p style="color: var(--text-dim); margin-top: 30px; font-size: 15px; line-height: 1.8;">
+                        Welcome to the live photo stream of the Grand Gala 2026. Our team is uploading professionally edited highlights as they happen. Stay connected and share your favorite moments instantly.
+                    </p>
+                    <div style="margin-top: 40px;">
+                        <a href="#gallery" class="btn btn-primary">BROWSE LIVE PHOTOS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="live-gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="subtitle">Real-Time Stream</span>
+                <h2 class="section-title">Latest Highlights</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Mockup Photos -->
+                <div class="photo-card">
+                    <img src="../images/portfolio_event_1.png" alt="Gala Highlight">
+                    <div class="photo-overlay">
+                        <span class="timestamp">2 mins ago</span>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <img src="../images/portfolio_wedding_1.png" alt="Gala Highlight">
+                    <div class="photo-overlay">
+                        <span class="timestamp">8 mins ago</span>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <img src="../images/hero_wedding_photography.png" alt="Gala Highlight">
+                    <div class="photo-overlay">
+                        <span class="timestamp">15 mins ago</span>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <img src="../images/portfolio_baptism_1.png" alt="Gala Highlight">
+                    <div class="photo-overlay">
+                        <span class="timestamp">24 mins ago</span>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <img src="../images/portfolio_event_1.png" alt="Gala Highlight">
+                    <div class="photo-overlay">
+                        <span class="timestamp">32 mins ago</span>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="photo-card">
+                    <img src="../images/portfolio_wedding_1.png" alt="Gala Highlight">
+                    <div class="photo-overlay">
+                        <span class="timestamp">45 mins ago</span>
+                        <a href="#" class="btn-download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="color: var(--text-dim); font-size: 14px; margin-bottom: 20px;">More photos being uploaded... Refresh for updates.</p>
+                <button class="btn btn-outline" onclick="location.reload()">REFRESH STREAM</button>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 60px 0; border-top: 1px solid rgba(197, 160, 89, 0.1); text-align: center; color: var(--text-dim); font-size: 12px; letter-spacing: 1px;">
+        <div class="container">
+            <p>&copy; 2024 LUMIÈRE STUDIOS. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script src="../app.js"></script>
+    <script>
+        // Simple mock for "live" updates
+        console.log('Live Event Stream initialized');
+    </script>
+</body>
+</html>

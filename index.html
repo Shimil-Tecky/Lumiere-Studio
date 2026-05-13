@@ -21,9 +21,9 @@
             </div>
             <ul class="nav-links">
                 <li><a href="#hero">HOME</a></li>
-                <li><a href="#portfolio">PORTFOLIO</a></li>
-                <li><a href="#client-login">CLIENT LOGIN</a></li>
-                <li><a href="#live-event">LIVE EVENT</a></li>
+                <li><a href="components/portfolio.html">PORTFOLIO</a></li>
+                <li><a href="components/login.html">CLIENT LOGIN</a></li>
+                <li><a href="components/live-event.html">LIVE EVENT</a></li>
                 <li><a href="#admin" class="btn-admin">ADMIN</a></li>
             </ul>
             <div class="mobile-menu-btn">
@@ -40,7 +40,7 @@
             <h1 class="hero-title">Capturing Timeless Moments</h1>
             <p class="hero-subtitle">Luxury cinematic photography for weddings, baptisms, and premium events.</p>
             <div class="hero-cta">
-                <a href="#portfolio" class="btn btn-primary">VIEW GALLERY</a>
+                <a href="components/portfolio.html" class="btn btn-primary">VIEW GALLERY</a>
                 <a href="#booking" class="btn btn-outline">BOOK NOW</a>
             </div>
         </div>
@@ -60,7 +60,7 @@
                     <div class="portfolio-overlay">
                         <span class="category">Wedding</span>
                         <h3>Eternal Bond</h3>
-                        <a href="#" class="view-project">View Story</a>
+                        <a href="components/story-wedding.html" class="view-project">View Story</a>
                     </div>
                 </div>
                 <div class="portfolio-item baptism">
@@ -68,7 +68,7 @@
                     <div class="portfolio-overlay">
                         <span class="category">Baptism</span>
                         <h3>Pure Grace</h3>
-                        <a href="#" class="view-project">View Story</a>
+                        <a href="components/story-baptism.html" class="view-project">View Story</a>
                     </div>
                 </div>
                 <div class="portfolio-item event">
@@ -76,7 +76,7 @@
                     <div class="portfolio-overlay">
                         <span class="category">Premium Event</span>
                         <h3>Gala Night</h3>
-                        <a href="#" class="view-project">View Story</a>
+                        <a href="components/story-event.html" class="view-project">View Story</a>
                     </div>
                 </div>
             </div>
@@ -89,9 +89,40 @@
 
     <div id="booking-container"></div>
 
+    <section id="admin">
+        <div class="container">
+            <div class="admin-login-wrapper">
+                <div class="admin-card">
+                    <div class="admin-header">
+                        <i class="fas fa-user-shield admin-icon"></i>
+                        <h2>Internal Access</h2>
+                        <p>Authorized Personnel Only</p>
+                    </div>
+                    <form id="admin-login-form">
+                        <div class="form-group">
+                            <label for="admin-user">Admin ID</label>
+                            <input type="text" id="admin-user" class="form-input" placeholder="Enter Admin ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-pass">Secure Password</label>
+                            <input type="password" id="admin-pass" class="form-input" placeholder="••••••••" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-admin-submit">VERIFY ACCESS</button>
+                    </form>
+                    <div class="admin-footer">
+                        <p>Secure login provided by Lumière Security Systems</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <a href="https://wa.me/yournumber" class="whatsapp-float" target="_blank" id="whatsapp-button">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- Toast Notification System -->
+    <div id="toast-container" class="toast-container"></div>
 
     <script src="app.js"></script>
 </body>
