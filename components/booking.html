@@ -1,0 +1,65 @@
+<section id="booking" class="booking-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="subtitle">Reserve Your Date</span>
+            <h2 class="section-title">Book Your Session</h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="booking-wrapper">
+            <div class="booking-info">
+                <h3>Let's Create Magic</h3>
+                <p>We only take a limited number of premium events each year to ensure the highest quality and personal attention for every client.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Studio 42, Luxury Ave, Paris</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+33 1 23 45 67 89</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>hello@lumierestudios.com</span>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                </div>
+            </div>
+
+            <form id="booking-form" class="booking-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <select id="event-type" name="event-type" required>
+                            <option value="" disabled selected>Event Type</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="baptism">Baptism</option>
+                            <option value="premium-event">Premium Event</option>
+                            <option value="portrait">Portrait Session</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="event-date" name="event-date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="Tell us about your vision..." rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">SEND INQUIRY</button>
+                <div id="form-status" class="form-status"></div>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,421 @@
+:root {
+    --primary-gold: #C5A059;
+    --gold-hover: #E8C37D;
+    --bg-dark: #0A0A0A;
+    --bg-card: #1A1A1A;
+    --text-light: #F5F5F5;
+    --text-dim: #A0A0A0;
+    --nav-height: 90px;
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Grain Texture Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+h1, h2, h3, .logo-main {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Navigation */
+#main-nav {
+    height: var(--nav-height);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+#main-nav.scrolled {
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+    height: 70px;
+}
+
+#main-nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-main {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-gold);
+    line-height: 1;
+}
+
+.logo-sub {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--text-dim);
+    margin-top: 4px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-gold);
+}
+
+.btn-admin {
+    background: var(--primary-gold);
+    color: #000 !important;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 11px !important;
+}
+
+.btn-admin:hover {
+    background: var(--gold-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+}
+
+/* Hero Section */
+#hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: url('images/hero_wedding_photography.png') no-repeat center center/cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: clamp(40px, 8vw, 95px);
+    color: var(--primary-gold);
+    margin-bottom: 25px;
+    line-height: 1.05;
+    font-weight: 400;
+    opacity: 0;
+    transform: translateY(40px) skewY(2deg);
+    animation: premiumFadeIn 1.2s forwards 0.5s;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle {
+    font-size: clamp(14px, 2vw, 18px);
+    color: var(--text-light);
+    margin-bottom: 50px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: premiumFadeIn 1.2s forwards 0.8s;
+}
+
+.hero-cta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: premiumFadeIn 1.2s forwards 1.1s;
+}
+
+.btn {
+    padding: 18px 40px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 2px;
+    border-radius: 2px;
+    transition: var(--transition);
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: var(--primary-gold);
+    color: #000;
+    border: 1px solid var(--primary-gold);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--primary-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #FFF;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary-gold);
+    color: var(--primary-gold);
+    transform: translateY(-5px);
+}
+
+.btn-outline-alt {
+    background: rgba(0,0,0,0.3);
+    color: #FFF;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.btn-outline-alt:hover {
+    border-color: var(--primary-gold);
+    color: var(--primary-gold);
+    background: rgba(197, 160, 89, 0.05);
+}
+
+/* WhatsApp Float */
+.whatsapp-float {
+    position: fixed;
+    bottom: 40px;
+    left: 40px;
+    width: 65px;
+    height: 65px;
+    background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+    color: #FFF;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 32px;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15) translateY(-5px);
+    box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+}
+
+/* Section Headers */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header .subtitle {
+    color: var(--primary-gold);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-header .section-title {
+    font-size: clamp(30px, 5vw, 45px);
+    color: #FFF;
+    margin-bottom: 15px;
+}
+
+.title-underline {
+    width: 60px;
+    height: 2px;
+    background: var(--primary-gold);
+    margin: 0 auto;
+}
+
+/* Portfolio Section */
+#portfolio {
+    padding: 120px 0;
+    background-color: var(--bg-dark);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.portfolio-item {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    opacity: 0;
+    transition: var(--transition);
+    transform: translateY(20px);
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio-overlay .category {
+    color: var(--primary-gold);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.portfolio-overlay h3 {
+    font-size: 24px;
+    color: #FFF;
+    margin-bottom: 20px;
+}
+
+.view-project {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: inline-block;
+    border-bottom: 1px solid var(--primary-gold);
+    padding-bottom: 5px;
+    transition: var(--transition);
+}
+
+.view-project:hover {
+    color: var(--primary-gold);
+    border-bottom-color: #FFF;
+}
+
+.portfolio-footer {
+    text-align: center;
+}
+
+/* Animations */
+@keyframes premiumFadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0) skewY(0deg);
+    }
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mobile-menu-btn span {
+    width: 25px;
+    height: 2px;
+    background: var(--primary-gold);
+    transition: var(--transition);
+}
+
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+    .mobile-menu-btn {
+        display: flex;
+    }
+}

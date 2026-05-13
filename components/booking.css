@@ -1,0 +1,133 @@
+.booking-section {
+    padding: 120px 0;
+    background-color: #0F0F0F;
+    position: relative;
+}
+
+.booking-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 80px;
+    margin-top: 50px;
+    background: var(--bg-card);
+    padding: 60px;
+    border-radius: 8px;
+    border: 1px solid rgba(197, 160, 89, 0.1);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.booking-info h3 {
+    font-size: 32px;
+    color: var(--primary-gold);
+    margin-bottom: 20px;
+}
+
+.booking-info p {
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    font-size: 15px;
+}
+
+.contact-details {
+    margin-bottom: 40px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.contact-item i {
+    color: var(--primary-gold);
+    width: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    color: var(--text-dim);
+    font-size: 18px;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--primary-gold);
+    transform: translateY(-3px);
+}
+
+/* Form Styles */
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px;
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+    background: rgba(255,255,255,0.05);
+}
+
+.form-group select option {
+    background: var(--bg-card);
+}
+
+.btn-block {
+    width: 100%;
+    cursor: pointer;
+}
+
+.form-status {
+    margin-top: 15px;
+    font-size: 13px;
+    text-align: center;
+}
+
+.form-status.success {
+    color: #25d366;
+}
+
+.form-status.error {
+    color: #ff4d4d;
+}
+
+@media (max-width: 992px) {
+    .booking-wrapper {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding: 40px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
