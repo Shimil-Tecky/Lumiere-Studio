@@ -50,7 +50,7 @@
                 <div class="user-profile" id="profile-trigger">
                     <div style="text-align: right;">
                         <p style="font-weight: 600; font-size: 14px;">Master Admin</p>
-                        <p style="font-size: 11px; color: var(--accent-gold);">Superuser</p>
+                        <p style="font-size: 11px; color: var(--accent-gold);">Studio Owner</p>
                     </div>
                     <div class="user-avatar">AD</div>
                     <i class="fas fa-chevron-down" style="font-size: 10px; color: var(--text-dim); margin-left: 10px;"></i>
@@ -188,53 +188,12 @@
             <div class="data-card">
                 <div class="card-header">
                     <h2>Studio Employees</h2>
-                    <button class="btn-action"><i class="fas fa-user-plus"></i> ADD STAFF</button>
+                    <button class="btn-action" id="open-add-staff">
+                        <i class="fas fa-user-plus"></i> ADD STAFF
+                    </button>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
-                    <!-- Employee Card -->
-                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 25px; border-radius: 8px;">
-                        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
-                            <div style="width: 50px; height: 50px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); font-weight: 700;">JV</div>
-                            <div>
-                                <h3 style="font-size: 16px;">Julian Vance</h3>
-                                <p style="font-size: 12px; color: var(--accent-gold);">Lead Photographer</p>
-                            </div>
-                        </div>
-                        <div class="admin-form-group">
-                            <label class="admin-label">Admin ID</label>
-                            <input type="text" class="admin-input" value="julian_vance" readonly>
-                        </div>
-                        <div class="admin-form-group">
-                            <label class="admin-label">Access Level</label>
-                            <p style="font-size: 13px;">Full Access</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn-small btn-edit"><i class="fas fa-user-edit"></i> EDIT</button>
-                            <button class="btn-small btn-delete"><i class="fas fa-user-minus"></i> DELETE</button>
-                        </div>
-                    </div>
-
-                    <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 25px; border-radius: 8px;">
-                        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
-                            <div style="width: 50px; height: 50px; background: #222; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-gold); font-weight: 700;">MA</div>
-                            <div>
-                                <h3 style="font-size: 16px;">Marco Rossi</h3>
-                                <p style="font-size: 12px; color: var(--accent-gold);">Editor / Retoucher</p>
-                            </div>
-                        </div>
-                        <div class="admin-form-group">
-                            <label class="admin-label">Admin ID</label>
-                            <input type="text" class="admin-input" value="marco_editor" readonly>
-                        </div>
-                        <div class="admin-form-group">
-                            <label class="admin-label">Access Level</label>
-                            <p style="font-size: 13px;">AI Tools & Uploads Only</p>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn-small btn-edit"><i class="fas fa-user-edit"></i> EDIT</button>
-                            <button class="btn-small btn-delete"><i class="fas fa-user-minus"></i> DELETE</button>
-                        </div>
-                    </div>
+                <div id="team-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px;">
+                    <!-- Employee Cards will be dynamically loaded from Firestore -->
                 </div>
             </div>
         </section>
@@ -267,14 +226,104 @@
         </section>
     </main>
 
+    <!-- Add Staff Modal -->
+    <div id="add-staff-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-user-shield" style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                <h2>Recruit New Staff</h2>
+                <p>Register an employee to the studio database</p>
+            </div>
+            <form id="add-staff-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="staff-name" class="form-input" placeholder="e.g. Julian Vance" required>
+                </div>
+                <div class="form-group">
+                    <label>Professional Role</label>
+                    <select id="staff-role" class="form-input" required>
+                        <option value="Lead Photographer">Lead Photographer</option>
+                        <option value="Cinematographer">Cinematographer</option>
+                        <option value="AI Editor">AI Editor</option>
+                        <option value="Studio Manager">Studio Manager</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Work Email</label>
+                    <input type="email" id="staff-email" class="form-input" placeholder="julian@lumiere-studios.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Custom Admin ID</label>
+                    <input type="text" id="staff-id" class="form-input" placeholder="e.g. julian_vance_01" required>
+                </div>
+                <div class="form-group">
+                    <label>Security Password</label>
+                    <input type="password" id="staff-password" class="form-input" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn-action" style="width: 100%; margin-top: 20px;">
+                    REGISTER EMPLOYEE
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Staff Modal -->
+    <div id="edit-staff-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-user-edit" style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                <h2>Edit Staff Profile</h2>
+                <p>Modify employee details and access rights</p>
+            </div>
+            <form id="edit-staff-form">
+                <input type="hidden" id="edit-staff-id-internal">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="edit-staff-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Professional Role</label>
+                    <select id="edit-staff-role" class="form-input" required>
+                        <option value="Lead Photographer">Lead Photographer</option>
+                        <option value="Cinematographer">Cinematographer</option>
+                        <option value="AI Editor">AI Editor</option>
+                        <option value="Studio Manager">Studio Manager</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Work Email</label>
+                    <input type="email" id="edit-staff-email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Admin ID</label>
+                    <input type="text" id="edit-staff-id" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="edit-staff-status" class="form-input">
+                        <option value="Active">Active</option>
+                        <option value="On Leave">On Leave</option>
+                        <option value="Terminated">Terminated</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-action" style="width: 100%; margin-top: 20px;">
+                    SAVE CHANGES
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Profile Modal -->
+
     <div id="profile-modal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <div class="modal-header">
-                <div class="user-avatar-large">AD</div>
-                <h2>Master Admin</h2>
-                <p>Superuser / Studio Owner</p>
+                <div class="user-avatar-large" id="profile-modal-avatar">AD</div>
+                <h2 id="profile-modal-name">Master Admin</h2>
+                <p id="profile-modal-role">Superuser / Studio Owner</p>
             </div>
             <div class="modal-body">
                 <div class="profile-info-row">
@@ -314,6 +363,16 @@
                 <p>Update your public studio identity</p>
             </div>
             <form id="edit-profile-form" class="modal-body">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div class="avatar-upload-container" id="avatar-upload-trigger" style="position: relative; width: 100px; height: 100px; margin: 0 auto; cursor: pointer;">
+                        <div class="user-avatar-large" id="edit-profile-preview" style="width: 100%; height: 100%; font-size: 30px;">AD</div>
+                        <div style="position: absolute; bottom: 0; right: 0; background: var(--accent-gold); width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; border: 3px solid #1a1a1a;">
+                            <i class="fas fa-camera" style="font-size: 12px;"></i>
+                        </div>
+                    </div>
+                    <input type="file" id="profile-image-input" style="display: none;" accept="image/*">
+                    <p style="font-size: 11px; color: var(--text-dim); margin-top: 10px;">Click to upload from device</p>
+                </div>
                 <div class="admin-form-group">
                     <label class="admin-label">Full Name</label>
                     <input type="text" id="edit-admin-name" class="admin-input" value="Master Admin" required>
@@ -323,8 +382,12 @@
                     <input type="text" id="edit-admin-title" class="admin-input" value="Superuser / Studio Owner" required>
                 </div>
                 <div class="admin-form-group">
-                    <label class="admin-label">Email Address</label>
-                    <input type="email" id="edit-admin-email" class="admin-input" value="admin@lumierestudios.com" required>
+                    <label class="admin-label">Work Email Address</label>
+                    <input type="email" id="edit-admin-email" class="admin-input" value="shimilappu9@gmail.com" required>
+                </div>
+                <div class="admin-form-group">
+                    <label class="admin-label">Personal Admin ID</label>
+                    <input type="text" id="edit-admin-id" class="admin-input" placeholder="e.g. master_shimil_01" required>
                 </div>
                 <button type="submit" class="btn-action" style="width: 100%; margin-top: 10px;">SAVE CHANGES</button>
             </form>
@@ -437,9 +500,13 @@
             </div>
             
             <div class="folder-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-                <div style="display: flex; gap: 10px;">
-                    <button class="btn-action" id="upload-to-folder"><i class="fas fa-cloud-upload-alt"></i> SHARE PHOTOS</button>
-                    <button style="background: transparent; border: 1px solid var(--border); color: #FFF; padding: 10px 15px; border-radius: 4px; cursor: pointer; font-size: 12px;"><i class="fas fa-share-alt"></i> GET CLIENT LINK</button>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <button class="btn-action" id="upload-to-folder" style="height: 50px; padding: 0 30px;"><i class="fas fa-cloud-upload-alt"></i> SHARE PHOTOS</button>
+                    <button class="btn-action-outline" id="btn-show-qr" style="height: 50px;"><i class="fas fa-qrcode"></i> GENERATE QR</button>
+                    <div id="qr-code-container" style="background: #fff; padding: 8px; border-radius: 4px; display: none; flex-direction: column; align-items: center; gap: 5px;">
+                        <img id="folder-qr-code" src="" alt="QR Code" style="width: 80px; height: 80px;">
+                        <span style="font-size: 9px; color: #000; font-weight: 700;">SCAN FOR LIVE</span>
+                    </div>
                 </div>
                 <div style="color: var(--text-dim); font-size: 12px;">
                     <span id="photo-count">0</span> Photos shared in this folder
@@ -491,6 +558,12 @@
     <!-- Toast Notification System -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="admin.js"></script>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
+    <script type="module" src="../firebase/firebase-config.js"></script>
+    <script type="module" src="admin.js"></script>
 </body>
 </html>

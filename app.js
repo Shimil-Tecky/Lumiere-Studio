@@ -154,24 +154,109 @@ document.addEventListener('DOMContentLoaded', () => {
     // Admin Login Handler
     const adminForm = document.getElementById('admin-login-form');
     if (adminForm) {
-        adminForm.addEventListener('submit', (e) => {
+        adminForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const adminId = document.getElementById('admin-user').value;
+            const userInput = document.getElementById('admin-user').value.trim();
             const adminPass = document.getElementById('admin-pass').value;
             
-            // Mock employee credentials
-            const employees = ['julian_vance', 'marco_editor', 'admin'];
-            
-            if (employees.includes(adminId.toLowerCase())) {
-                showToast(`Welcome back, ${adminId}. Redirecting to Admin Panel...`, 'success');
+            showToast('Verifying Secure Credentials...', 'info');
+
+            try {
+                let emailToSignIn = userInput;
+
+                // 1. If it's NOT an email (no @), treat as Admin ID
+                if (!userInput.includes('@')) {
+                    // Check for Master Admin Alias
+                    if (userInput.toLowerCase() === 'master_admin') {
+                        emailToSignIn = 'shimilappu9@gmail.com';
+                    } else {
+                        // Lookup Employee ID in Firestore
+                        try {
+                            const staffQuery = await db.collection('staff').where('id', '==', userInput).get();
+                            if (!staffQuery.empty) {
+                                emailToSignIn = staffQuery.docs[0].data().email;
+                                console.log("Lumière Auth: ID Translation Successful ->", emailToSignIn);
+                            } else {
+                                // Fallback: try common domain if ID lookup fails
+                                emailToSignIn = `${userInput}@lumiere-studios.com`;
+                            }
+                        } catch (err) {
+                            console.warn("Lumière Auth: ID lookup restricted, using fallback.");
+                            emailToSignIn = `${userInput}@lumiere-studios.com`;
+                        }
+                    }
+                }
+
+                // 2. Attempt Firebase Authentication
+                await auth.signInWithEmailAndPassword(emailToSignIn, adminPass);
+                
+                showToast(`Welcome back. Accessing dashboard...`, 'success');
+                
                 setTimeout(() => {
                     window.location.href = 'admin/admin.html';
-                }, 1500);
-            } else {
-                showToast('Access Denied: Invalid Admin ID or Password.', 'error');
+                }, 1200);
+
+            } catch (error) {
+                console.error("Login Error:", error.code, error.message);
+                let errorMessage = 'Access Denied: Invalid Credentials.';
+                
+                if (error.code === 'auth/user-not-found') {
+                    errorMessage = 'Admin ID not recognized in security system.';
+                } else if (error.code === 'auth/wrong-password') {
+                    errorMessage = 'Incorrect Secure Password.';
+                } else if (error.code === 'auth/network-request-failed') {
+                    errorMessage = 'Network error. Please check your connection.';
+                }
+                
+                showToast(errorMessage, 'error');
             }
         });
     }
+
+    // Live Portfolio Data Sync
+    function syncPortfolioFromFirestore() {
+        const portfolioGrid = document.querySelector('.portfolio-grid');
+        if (!portfolioGrid) return;
+
+        db.collection('events').orderBy('date', 'desc').limit(6).onSnapshot((snapshot) => {
+            if (snapshot.empty) return;
+            
+            // Update Live Event nav link to point to the latest active event
+            const liveEventLink = document.querySelector('a[href*="live-event.html"]');
+            const spotlightSec = document.getElementById('live-spotlight');
+            
+            if (snapshot.docs.length > 0) {
+                const latestDoc = snapshot.docs[0];
+                const latestData = latestDoc.data();
+                
+                // Update Nav Link
+                if (liveEventLink) {
+                    liveEventLink.href = `components/live-event.html?event=${latestDoc.id}`;
+                }
+            }
+            
+            portfolioGrid.innerHTML = ''; // Clear mock items
+            
+            snapshot.forEach((doc) => {
+                const event = doc.data();
+                const coverImg = (event.photos && event.photos.length > 0) ? event.photos[0] : 'https://i.ibb.co/2zbRSK5/6c813f4ab841.jpg';
+                
+                const item = document.createElement('div');
+                item.className = `portfolio-item ${event.category?.toLowerCase() || 'event'}`;
+                item.innerHTML = `
+                    <img src="${coverImg}" alt="${event.title}">
+                    <div class="portfolio-overlay">
+                        <span class="category">${event.category || 'Event'}</span>
+                        <h3>${event.title}</h3>
+                        <a href="components/story-wedding.html" class="view-project">View Story</a>
+                    </div>
+                `;
+                portfolioGrid.appendChild(item);
+            });
+        });
+    }
+
+    syncPortfolioFromFirestore();
 
     console.log('Lumière Studios Landing Page Initialized');
 });

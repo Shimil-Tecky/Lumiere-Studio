@@ -36,55 +36,41 @@
         </div>
     </nav>
 
-    <header class="live-event-hero">
+    <header class="live-event-hero" style="min-height: 80vh; padding: 100px 0; background: linear-gradient(to right, #0a0a0a, #151515); border-bottom: 1px solid rgba(197, 160, 89, 0.1);">
         <div class="container">
-            <div class="live-status">
-                <span class="live-dot"></span>
-                Live Event Streaming
+            <div class="live-spotlight-wrapper" style="display: flex; align-items: center; gap: 60px; flex-wrap: wrap;">
+                <div class="live-info" style="flex: 1; min-width: 300px; text-align: left;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                        <span style="width: 8px; height: 8px; background: #ff4d4d; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #ff4d4d; animation: pulse 2s infinite;"></span>
+                        <span style="color: #ff4d4d; font-weight: 700; letter-spacing: 2px; font-size: 12px; text-transform: uppercase;">Live Event Streaming</span>
+                    </div>
+                    <h1 id="live-hero-title" style="font-size: clamp(40px, 8vw, 70px); color: #FFF; margin-bottom: 15px; font-family: 'Playfair Display', serif;">-</h1>
+                    <p id="live-hero-desc" style="color: var(--text-dim); margin-bottom: 30px; line-height: 1.8; font-size: 18px;">Capturing the magic as it happens. Our team is uploading professionally edited highlights in real-time.</p>
+                    
+                    <div class="live-details-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                        <div style="color: var(--primary-gold); font-size: 14px; font-weight: 600;">
+                            <i class="far fa-calendar-alt" style="margin-right: 8px;"></i> <span id="live-event-date">-</span>
+                        </div>
+                        <div style="color: var(--primary-gold); font-size: 14px; font-weight: 600;">
+                            <i class="fas fa-tag" style="margin-right: 8px;"></i> <span id="live-event-type">-</span>
+                        </div>
+                        <div style="color: var(--primary-gold); font-size: 14px; font-weight: 600;">
+                            <i class="fas fa-user" style="margin-right: 8px;"></i> <span id="live-event-client">-</span>
+                        </div>
+                        <div style="color: var(--primary-gold); font-size: 14px; font-weight: 600;">
+                            <i class="fas fa-signal" style="margin-right: 8px;"></i> REAL-TIME UPDATES
+                        </div>
+                    </div>
+                </div>
+                <div class="live-qr" style="background: #FFF; padding: 25px; border-radius: 12px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); text-align: center; animation: fadeIn 0.8s ease;">
+                    <img id="live-hero-qr" src="" alt="Live Event QR" style="width: 180px; height: 180px; display: block; margin-bottom: 10px;">
+                    <span style="color: #000; font-size: 10px; font-weight: 800; letter-spacing: 1px;">SCAN TO SHARE</span>
+                </div>
             </div>
-            <h1 class="hero-title" style="color: #FFF; font-size: clamp(30px, 8vw, 70px);">Grand Gala 2026</h1>
-            <p class="hero-subtitle">Capturing excellence in real-time</p>
         </div>
     </header>
 
-    <section class="qr-section">
-        <div class="container">
-            <div class="qr-grid">
-                <div class="qr-card">
-                    <div class="qr-image">
-                        <!-- Mockup QR Code -->
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=https://lumierestudios.com/live-event-gala-2026" alt="Event QR Code" style="width: 100%; border-radius: 4px;">
-                    </div>
-                    <div class="qr-instructions">
-                        <h3>Scan to Access</h3>
-                        <p>Open your camera to instantly view and download your professional photos.</p>
-                    </div>
-                </div>
-                <div class="event-details">
-                    <span class="subtitle" style="color: var(--primary-gold); letter-spacing: 4px; font-size: 12px; font-weight: 600; display: block; margin-bottom: 10px;">EVENT INFO</span>
-                    <h2>The Grand Celebration</h2>
-                    <div class="detail-item">
-                        <i class="fas fa-calendar"></i>
-                        <span>May 13, 2026</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Palais Garnier, Paris</span>
-                    </div>
-                    <div class="detail-item">
-                        <i class="fas fa-camera"></i>
-                        <span>Lead Photographer: Julian Vance</span>
-                    </div>
-                    <p style="color: var(--text-dim); margin-top: 30px; font-size: 15px; line-height: 1.8;">
-                        Welcome to the live photo stream of the Grand Gala 2026. Our team is uploading professionally edited highlights as they happen. Stay connected and share your favorite moments instantly.
-                    </p>
-                    <div style="margin-top: 40px;">
-                        <a href="#gallery" class="btn btn-primary">BROWSE LIVE PHOTOS</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <section id="gallery" class="live-gallery-section">
         <div class="container">
@@ -153,10 +139,113 @@
         </div>
     </footer>
 
-    <script src="../app.js"></script>
-    <script>
-        // Simple mock for "live" updates
-        console.log('Live Event Stream initialized');
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script type="module" src="../firebase/firebase-config.js"></script>
+
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const eventId = params.get('event');
+            
+            const heroTitle = document.getElementById('live-hero-title');
+            const galleryGrid = document.querySelector('.gallery-grid');
+            const eventDate = document.getElementById('live-event-date');
+            const eventType = document.getElementById('live-event-type');
+            const eventClient = document.getElementById('live-event-client');
+            const heroQr = document.getElementById('live-hero-qr');
+
+            // Update Nav Links for this page
+            document.querySelectorAll('a').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && href.includes('live-event.html') && !href.includes('?')) {
+                    // It's the live event link, leave it as is or update it later
+                }
+                // Fix relative paths for components
+                if (href && (href.startsWith('components/') || href === 'index.html')) {
+                    link.href = '../' + href;
+                }
+            });
+
+            function updateNavWithEvent(id) {
+                const liveLinks = document.querySelectorAll('a[href*="live-event.html"]');
+                liveLinks.forEach(link => {
+                    link.href = `live-event.html?event=${id}`;
+                });
+            }
+
+            function initLiveGallery(id) {
+                if (!id) return;
+                console.log("Initializing gallery for:", id);
+                updateNavWithEvent(id);
+
+                if (heroQr) {
+                    const shareUrl = `${window.location.origin}${window.location.pathname}?event=${id}`;
+                    heroQr.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(shareUrl)}`;
+                }
+
+                db.collection('events').doc(id).onSnapshot(doc => {
+                    if (!doc.exists) {
+                        galleryGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-dim); padding: 40px;">Event not found.</p>';
+                        return;
+                    }
+
+                    const event = doc.data();
+                    console.log("Event Data Loaded:", event);
+                    
+                    const title = event.title || event.name || 'Live Gallery';
+                    if (heroTitle) heroTitle.textContent = title;
+                    
+                    if (event.date && eventDate) {
+                        const date = event.date.seconds ? new Date(event.date.seconds * 1000) : new Date(event.date);
+                        eventDate.textContent = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                    }
+
+                    if (eventType) eventType.textContent = event.category || 'Live Session';
+                    if (eventClient) eventClient.textContent = event.email || 'Private Client';
+
+                    galleryGrid.innerHTML = '';
+                    if (event.photos && event.photos.length > 0) {
+                        [...event.photos].reverse().forEach(url => {
+                            const card = document.createElement('div');
+                            card.className = 'photo-card';
+                            card.innerHTML = `
+                                <img src="${url}" alt="${title}">
+                                <div class="photo-overlay">
+                                    <a href="${url}" target="_blank" class="btn-download"><i class="fas fa-eye"></i></a>
+                                    <a href="${url}" download class="btn-download" style="margin-left: 10px;"><i class="fas fa-download"></i></a>
+                                </div>
+                            `;
+                            galleryGrid.appendChild(card);
+                        });
+                    } else {
+                        galleryGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-dim); padding: 40px;">Waiting for the first captures... Stay tuned!</p>';
+                    }
+                }, err => {
+                    console.error("Snapshot error:", err);
+                    galleryGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-dim); padding: 40px;">Access Restricted.</p>';
+                });
+            }
+
+            if (eventId) {
+                initLiveGallery(eventId);
+            } else {
+                console.log("No ID in URL, fetching latest...");
+                galleryGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-dim); padding: 40px;">Detecting latest live stream...</p>';
+                db.collection('events').orderBy('date', 'desc').limit(1).get().then(snapshot => {
+                    if (!snapshot.empty) {
+                        const latestId = snapshot.docs[0].id;
+                        initLiveGallery(latestId);
+                    } else {
+                        galleryGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-dim); padding: 40px;">No active live events found.</p>';
+                    }
+                }).catch(err => {
+                    console.error("Fallback error:", err);
+                    galleryGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-dim); padding: 40px;">Connection Error.</p>';
+                });
+            }
+        });
     </script>
 </body>
 </html>
